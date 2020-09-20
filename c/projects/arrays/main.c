@@ -85,7 +85,7 @@ int main(int argc, char** argv)
 {
     int arr[] = {1, 5, 19, 2, 8, 4, 6, 5, 15, 8, 9};
     int arr_len = (int) static_array_size(arr);
-    // TODO change sep to sep[] = ", "
+    // TODO change sep to sep[] = ", "; delte space, add sep_len
     char *str, sep = ',', space[] = " ";
     int str_len;
 
