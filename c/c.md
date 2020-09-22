@@ -1,10 +1,35 @@
 # C
 
-## MENU
+Programming language by Dennis Ritchie and Kenneth Thompson, a successor of the language B.
+It has been standardized by the ANSI since 1989 (ANSI C) and by the ISO since 1990.
 
-## TODO
+## Good sources
 
-[variable scope](https://study.com/academy/lesson/variable-scope-in-c-programming.html#:~:text=In%20programming%2C%20variable%20scope%20denotes,are%20passed%20to%20other%20functions.)
+[devdocs - C Programming Language](https://devdocs.io/c/)
+
+## Content
+
+- [Install](#install)
+- [Basics](#basics)
+- [Compile](#compile)
+- [Run the executable file](#run-the-executable-file)
+- [Comments](#comments)
+- [Main function](#main-function)
+- [Printing (standard input output library)](#printing-(standard-input-output-library))
+- [Variables](#variables)
+- [Casting](#casting)
+- [Aritmetics, operators precedence, asociativity](#aritmetics,-operators-precedence,-asociativity)
+- [Arrays](#arrays)
+- [Conditions](#conditions)
+- [Boolean](#boolean)
+- [Short-Circuiting](#short-Circuiting)
+- [Loops](#loops)
+- [Functions](#functions)
+- [Input](#input)
+- [Libraries](#libraries)
+- [Test driven development](#test-driven-development)
+- [Debug a segfault](#debug-a-segfault)
+- [TODO](#todo)
 
 ## Install
 
@@ -16,14 +41,56 @@ sudo apt install valgrind
 
 ## Basics
 
+### code hello_world.c
+
+Basic c program to go through.
+
 ```c
-main(int argc, char** argv)
+#include<stdio.h>
+
+int main(int argc, char** argv)
 {
+    printf("Hello world!\n");
     return 0;
 }
 ```
 
+## Compile
+
+```sh
+# Compile PATH_TO_CODE.c to executable a.out 
+gcc path/hello_world.c
+
+# Specify the executable output yourself -> code.out
+gcc path/to/main.c -o main.out
+
+# Prefered way to complie
+g++ -Wall -pedantic -Wno-long-long PATH_TO_CODE.c
+```
+
+## Run the executable file
+
+```sh
+# Just run in terminal
+./hello_world.out
+```
+```out
+Hello world!
+```
+
+### Transfer standard input/output to/from file
+
+```sh
+# Load the standard input from a text file
+./a.out < 0000_in.txt
+
+# Pipe the output to another file
+./a.out > 0000_out.txt
+```
+
 ## Comments
+
+Lines that are commented are skipped by the compiler, will not be compiled, nor executed
 
 ```c
 // Single line comment
@@ -43,44 +110,31 @@ main(int argc, char** argv)
  */
 ```
 
-## Printing (standard input output)
+## Main function
 
 ```c
+// Execution of a c code starts within main function
+main(int argc, char** argv)
+{
+    int something;
+    return 0;
+}
+```
+
+## Printing (standard input output library)
+
+To be able to use more funcitonality than just the one embeded into the language.
+It is possible to include a library.
+
+```c
+// Include a standard input output library at the top of the c file
 #include <stdio.h>
 ```
 ```c
-// Inside a funtion
 printf("Printing \"Printing \\n\"\n");
-printf("% 3d", invisible_sign_right_adjusted);
-printf("\n");
-// Convert integer back to string for later check
-snprintf(string, max_size_of_string, "%d", integer);
 ```
 
-[Printf documentation](https://www.cypress.com/file/54441/download#:~:text=Using%20printf%20numbers%20can%20be,right%2Djustified%20with%20leading%20spaces.)
-
-## Compile
-
-```sh
-# Compile PATH_TO_CODE.c to executable a.out 
-gpp PATH_TO_CODE.c
-
-# Specify the executable output yourself -> code.out
-gpp -o code.out PATH_TO_CODE.c
-
-# Prefered way to complie
-g++ -Wall -pedantic -Wno-long-long PATH_TO_CODE.c
-```
-
-## Run the executable
-
-```sh
-# Just run in terminal
-./a.out
-
-# Load the standard input form text file
-./a.out < 0000_in.txt
-```
+[source](http://www.cplusplus.com/reference/cstdio/printf/)
 
 ## Variables
 
@@ -90,6 +144,7 @@ g++ -Wall -pedantic -Wno-long-long PATH_TO_CODE.c
 int number;
 long int long_int;
 unsigned int unsigned_int;
+
 print("number %d, long_int %li, unsigned int %u\n", number, long_int, unsigned_int,  character);
 ```
 `g++ test.c; ./a.out`
@@ -113,6 +168,42 @@ printf("%f - decimal\n%f - more_precise\n%f - more_precise - decimal\n", decimal
 
 [ascii table](http://www.asciitable.com/)
 
+### Formated print 
+
+```c
+// Integer
+int num = 10;
+printf("%d, %i\n", num, num); // There is a difference between i and d
+// Flouat and double
+float decimal = 10.6;
+double precise = 10.666666666666666666;
+printf("%f, %f\n", decimal, precise);
+// Char, String
+char letter = 'q';
+char string[] = "String"
+printf("%c, %s\n", letter, string);
+// Unsigned int, long int, unsigned long int, long float
+unsigned int ui;
+long int li;
+unsigned long int uli;
+long float lf
+printf("...");
+```
+
+[There is a difference between i and d](https://stackoverflow.com/questions/1893490/what-is-the-difference-between-conversion-specifiers-i-and-d-in-formatted-io-f)
+
+
+#### Advance formating
+
+```c
+// Inside a funtion
+printf("% 3d\n", invisible_sign_right_adjusted);
+// Convert integer back to string for later check
+snprintf(string, max_size_of_string, "%d", integer);
+```
+
+[Printf documentation](https://www.cypress.com/file/54441/download#:~:text=Using%20printf%20numbers%20can%20be,right%2Djustified%20with%20leading%20spaces.)
+
 ## Casting
 
 ```c
@@ -132,6 +223,13 @@ a = a * b % c; // dunno, just use brackets
 ```
 [operator precedence](https://en.cppreference.com/w/c/language/operator_precedence)
 
+### Precedence 2
+
+```c
+// Return a size in bytes, the value is of type size_t
+sizeof(something)
+```
+[more about size_t](https://devdocs.io/c/types/size_t)
 
 ### Inrement pre-increment, decrement
 
@@ -140,7 +238,6 @@ a *= 10; // a = a * 10;
 b = a++; // first is b assigned to a, then the a is incremented by one
 c = --d; // first is d decremented by one, then is c asigned the d value
 ```
-
 
 ## Arrays
 
@@ -213,6 +310,8 @@ printf("Pointer value %p, pointed value %d", num_ptr, *num_ptr);
 
 ## Conditions
 
+### If
+
 ```c
 if (condition) {
     stuff();
@@ -220,6 +319,29 @@ if (condition) {
     stuff_2();
 } else {
     stuff_else();
+}
+```
+
+### Ternary condition
+
+```c
+(condition)? positive(): negative();
+
+a = (condition)? b: c;
+```
+
+### Switch
+
+```c
+switch (expression) ​{
+case constant1:
+    stuff();
+    break;
+case constant2:
+    stuff_more();
+    break;
+default:
+    stuff_default();
 }
 ```
 
@@ -264,14 +386,6 @@ Printing is beautiful!
 This is called Short-Circuiting, wont_happen did not happen...
 ```
 
-### Ternary condition
-
-```c
-(condition)? positive(): negative();
-
-a = (condition)? b: c;
-```
-
 ## Loops
 
 ```c
@@ -281,6 +395,11 @@ for (i = 0; i < size; i++) {
 
 while (condition) {
     stuff();
+}
+
+while (1) {
+    until_break();
+    break;
 }
 
 do {
@@ -369,75 +488,6 @@ int fu(int **ptr)
     fu(&ptr);
 ```
 
-## Input
-
-### Input arguments
-
-```c
-int main(int argc, char **argv)
-{
-    if (argc > 3) { // argc arguments count
-        // argv arguments vector, first string is the calling of the executable file itself (path/file)
-        printf("arg 0 %s, arg 1 %s, arg 2%s\n", argv[0], argv[1], argv[2]);
-    }
-}
-```
-
-### Standard input
-
-```c
-if (scanf("%d %d %d", &s_bob, &s_tom, &delay) !=3 || s_bob <= 0 || s_tom <= 0 || delay < 0) {
-    printf("%s\n", m_incorrect);
-    return 0;
-}
-```
-
-## Standard library
-
-```c
-#include <stdlib.h>
-```
-```c
-int a;
-a = (int) strtol(argv[1], NULL, 0);
-printf("a %d\n", a);
-
-size_t str_len = strlen(str_2);
-
-return EXIT_FAILURE;
-```
-
-## Dynamic memory
-
-```c
-// Alocate memory
-a_ptr = (int *) malloc(a_len * sizeof(*a_ptr));
-
-// Reallocate memory
-a_len = a_len * 2;
-a_ptr = (int *) realloc(a_ptr, a_len * sizeof(*a_ptr));
-
-// Dont forget to also free the memory
-free(a_ptr); 
-```
-
-### Check for memory leaks
-
-```sh
-valgrind --leak-check=full -v ./a.out
-```
-
-## Assertions
-
-```c
-#include <assert.h>
-
-assert(fu() == 0); // If fu() is not 0, the run is interupted
-
-// Add additional message
-assert(false && "message");
-```
-
 ## Struct
 
 ```c
@@ -476,14 +526,6 @@ int main(void)
 }
 ```
 
-## Limits
-
-```c
-#include <limits.h>
-
-printf("LONG_MAX %li\n", LONG_MAX);
-```
-
 ## Constants
 
 ```c
@@ -500,6 +542,143 @@ const int TERM_W = TERMINAL_WIDTH;
 
 ```c
 #define static_array_size(a) (sizeof(a) / sizeof((a)[0]))
+```
+
+## Input
+
+### Input arguments
+
+```c
+int main(int argc, char **argv)
+{
+    if (argc > 3) { // argc arguments count
+        // argv arguments vector, first string is the calling of the executable file itself (path/file)
+        printf("arg 0 %s, arg 1 %s, arg 2%s\n", argv[0], argv[1], argv[2]);
+    }
+}
+```
+
+## Libraries
+
+### Standard input outpu (stdio)
+
+### Standard input
+
+```c
+if (scanf("%d %d %d", &s_bob, &s_tom, &delay) !=3 || s_bob <= 0 || s_tom <= 0 || delay < 0) {
+    printf("%s\n", m_incorrect);
+    return 0;
+}
+// read input by bytes (chars)
+check = scanf("%c", &char)
+if (check == -1)
+    printf("end of file");
+else if (check != 1)
+    return 1;
+else
+    return 0;
+```
+
+## Time
+
+```c
+#include <time.h>
+```
+```c
+time_t t;
+printf("Time in seconds from 1970: %li\n", time(&t));
+```
+
+## Standard library
+
+[Nice source](https://www.tutorialspoint.com/c_standard_library/)
+
+```c
+#include <stdlib.h>
+```
+
+### String features
+
+```c
+int a;
+a = (int) strtol(argv[1], NULL, 0);
+printf("a %d\n", a);
+
+size_t str_len = strlen(str_2);
+```
+
+### Constants
+
+```
+return EXIT_FAILURE;
+```
+
+### Sorting
+
+```c
+int double_cmp (const void * a, const void * b) 
+{
+    return ( *(double*)a - *(double*)b );
+}
+
+// main
+double arr[] = {1.5, 67, 4.6, -132.7, 0.00006, 500000.25, -362};
+int arr_len = static_array_size(arr);
+qsort(arr, arr_len, sizeof(arr[0]), double_cmp);
+```
+
+### Randomness
+
+```c
+// Get random integer
+rand() // psudo random integer, always the same sequence of numbers
+
+// Do not set the seed is the same as set it to 1
+srand(1);
+rand() // absolutely the same "random" nubmer as above
+
+// Common practice is to set the seed with time
+srand(time(0)); // srand((unsigned) time(&t));
+rand()
+```
+
+### Dynamic memory
+
+```c
+// Alocate memory
+a_ptr = (int *) malloc(a_len * sizeof(*a_ptr));
+
+// Reallocate memory
+a_len = a_len * 2;
+a_ptr = (int *) realloc(a_ptr, a_len * sizeof(*a_ptr));
+
+// Dont forget to also free the memory
+free(a_ptr); 
+```
+
+### Check for memory leaks
+
+```sh
+valgrind --leak-check=full -v ./a.out
+```
+
+## Assertions
+
+```c
+#include <assert.h>
+
+assert(fu() == 0); // If fu() is not 0, the run is interupted
+
+// Add additional message
+assert(false && "message");
+```
+
+## Limits
+
+```c
+#include <limits.h>
+
+printf("LONG_MAX %li\n", LONG_MAX);
 ```
 
 ## Math
@@ -584,5 +763,8 @@ gdb ./a.out
 run
 ```
 
+## TODO
 
-
+- [variable scope](https://study.com/academy/lesson/variable-scope-in-c-programming.html#:~:text=In%20programming%2C%20variable%20scope%20denotes,are%20passed%20to%20other%20functions.)
+- make, makefile
+- how to add libraries and where to
