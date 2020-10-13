@@ -2,20 +2,31 @@
 
 ## Content
 
-- [Install C++](#install-c++)
-- [Compile a cpp code](#compile-a-cpp-code)
-- [Comments, documentation](#comments,-documentation)
-- [Variables](#variables)
-- [Stdin, stdout](#stdin,-stdout)
-- [String](#String)
-- [Loops](#Loops)
-- [Files](#Files)
-- [Dynamic memory](#dynamic-memory)
-- [make](#make)
-- [Debugger](#debugger)
-- [Header file](#header-file)
-- [Chrono](#chrono)
-- [](#)
+- [c](#c)
+  - [Content](#content)
+  - [Install C++](#install-c)
+  - [Compile a cpp code](#compile-a-cpp-code)
+  - [Comments, documentation](#comments-documentation)
+  - [Variables](#variables)
+    - [Boolean is integer 0 and 1](#boolean-is-integer-0-and-1)
+    - [Byte](#byte)
+  - [Operator precedence](#operator-precedence)
+  - [Stdin, stdout](#stdin-stdout)
+  - [String](#string)
+    - [w_char](#w_char)
+    - [https://stackoverflow.com/questions/12015571/how-to-print-unicode-character-in-c](#httpsstackoverflowcomquestions12015571how-to-print-unicode-character-in-c)
+  - [Condtitions](#condtitions)
+  - [Loops](#loops)
+  - [Assertions](#assertions)
+  - [Files](#files)
+  - [Dynamic memory](#dynamic-memory)
+  - [STL - standard template library](#stl---standard-template-library)
+    - [Vector](#vector)
+  - [Limits](#limits)
+    - [make](#make)
+  - [Debugger](#debugger)
+  - [Header file](#header-file)
+  - [Chrono](#chrono)
 
 ## Install C++
 
@@ -33,7 +44,7 @@ g++ -Wall -pedantic main.cpp -g -o ./a.out
 
 [link](https://developer.lsst.io/cpp/api-docs.html)
 
-## Variable
+## Variables
 
 ### Boolean is integer 0 and 1
 
@@ -45,6 +56,9 @@ There is std::byte since C++17
 
 [source](https://en.wikipedia.org/wiki/C++17)
 
+## Operator precedence
+
+[Operator precedence link](https://en.cppreference.com/w/cpp/language/operator_precedence)
 
 ## Stdin, stdout
 
@@ -90,6 +104,23 @@ int main() {
 }
 ```
 
+## Condtitions
+
+```cpp
+switch(expression) {
+case constant-expression  :
+    statement(s);
+    break; //optional
+case constant-expression  :
+    statement(s);
+    break; //optional
+  
+   // you can have any number of case statements.
+default : //Optional
+    statement(s);
+}
+```
+[source](https://www.tutorialspoint.com/cplusplus/cpp_switch_statement.htm)
 
 
 ## Loops
@@ -104,6 +135,18 @@ for (i = n; i > 0; --i) {
 ```
 [source](https://stackoverflow.com/questions/4706199/post-increment-and-pre-increment-within-a-for-loop-produce-same-output)
 
+## Assertions
+
+```cpp
+#include <cassert>
+```
+
+```cpp
+assert(("Result value was false", result == true));
+```
+
+[more - cppreference assert](https://en.cppreference.com/w/cpp/error/assert)
+
 ## Files
 
 ```cpp
@@ -114,11 +157,13 @@ for (i = n; i > 0; --i) {
 ```cpp
 ofstream f_out; // ifstream f_in; fstream f_in_out;
 myfile.open ("example.txt");
-
+assert(("Input file was not possible to open", myfile.fail() == false));
 myfile << "Writing this to a file.\n";
 myfile.close();
-
 ```
+
+[files link](http://www.cplusplus.com/doc/tutorial/files/), 
+[additional err message](https://stackoverflow.com/questions/17337602/how-to-get-error-message-when-ifstream-open-fails)
 
 [source](http://www.cplusplus.com/doc/tutorial/files/)
 
@@ -136,6 +181,32 @@ delete a;
 ```
 
 [source](http://www.cplusplus.com/doc/tutorial/dynamic/)
+
+## STL - standard template library
+
+### Vector
+
+```cpp
+#include <iostream>
+#include <vector>
+ 
+int main()
+{
+    // Create a vector containing integers
+    std::vector<int> v = {7, 5, 16, 8};
+ 
+    // Add two more integers to vector
+    v.push_back(25);
+    v.push_back(13);
+ 
+    // Iterate and print values of vector
+    for(int n : v) {
+        std::cout << n << '\n';
+    }
+}
+```
+
+https://en.cppreference.com/w/cpp/container/vector
 
 ## Limits
 
@@ -200,3 +271,4 @@ auto end = std::chrono::steady_clock::now();
 std::chrono::duration<double> elapsed_seconds = end-start;
 std::cout << "elapsed time: " << elapsed_seconds.count() << "s\n";
 ```
+[source](https://en.cppreference.com/w/cpp/chrono)

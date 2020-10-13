@@ -1,5 +1,3 @@
-hello : hello.o
-	gcc -Wall hello.o -o hello
-
-hello.o : hello.c
-	gcc -c -Wall hello.c -o hello.o
+hi : hello.c build
+	gcc hello.c -o build/hello.o
+	echo "ahoj"
