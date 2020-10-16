@@ -25,6 +25,7 @@
   - [Limits](#limits)
     - [make](#make)
   - [Debugger](#debugger)
+    - [TODO: GDB](#todo-gdb)
   - [Header file](#header-file)
   - [Chrono](#chrono)
 
@@ -235,6 +236,10 @@ target [target ...]: [component ...] [<TAB> command 1] . . .
 ```sh
 valgrind --leak-check=full ./a.out
 ```
+
+### TODO: GDB
+
+https://stackoverflow.com/questions/18271363/line-by-line-c-c-code-debugging-in-linux-ubuntu
 
 ## Header file
 
