@@ -1,33 +1,31 @@
-# c
+# cpp
 
-## Content
+## Content <!-- omit in toc -->
 
-- [c](#c)
-  - [Content](#content)
-  - [Install C++](#install-c)
-  - [Compile a cpp code](#compile-a-cpp-code)
-  - [Comments, documentation](#comments-documentation)
-  - [Variables](#variables)
-    - [Boolean is integer 0 and 1](#boolean-is-integer-0-and-1)
-    - [Byte](#byte)
-  - [Operator precedence](#operator-precedence)
-  - [Stdin, stdout](#stdin-stdout)
+- [Install C++](#install-c)
+- [Compile a cpp code](#compile-a-cpp-code)
+- [Comments, documentation](#comments-documentation)
+- [Variables](#variables)
+  - [Boolean](#boolean)
+  - [Byte](#byte)
   - [String](#string)
-    - [w_char](#w_char)
-    - [https://stackoverflow.com/questions/12015571/how-to-print-unicode-character-in-c](#httpsstackoverflowcomquestions12015571how-to-print-unicode-character-in-c)
-  - [Condtitions](#condtitions)
-  - [Loops](#loops)
-  - [Assertions](#assertions)
-  - [Files](#files)
-  - [Dynamic memory](#dynamic-memory)
-  - [STL - standard template library](#stl---standard-template-library)
-    - [Vector](#vector)
-  - [Limits](#limits)
-    - [make](#make)
-  - [Debugger](#debugger)
-    - [TODO: GDB](#todo-gdb)
-  - [Header file](#header-file)
-  - [Chrono](#chrono)
+  - [Enum](#enum)
+- [Operator precedence](#operator-precedence)
+- [Stdin, stdout](#stdin-stdout)
+- [Condtitions](#condtitions)
+- [Loops](#loops)
+- [Structres](#structres)
+- [Assertions](#assertions)
+- [Files](#files)
+- [Dynamic memory](#dynamic-memory)
+- [STL - standard template library](#stl---standard-template-library)
+  - [Vector](#vector)
+- [Limits](#limits)
+  - [make](#make)
+- [Debugger](#debugger)
+  - [TODO: GDB](#todo-gdb)
+- [Header file](#header-file)
+- [Chrono](#chrono)
 
 ## Install C++
 
@@ -47,7 +45,9 @@ g++ -Wall -pedantic main.cpp -g -o ./a.out
 
 ## Variables
 
-### Boolean is integer 0 and 1
+### Boolean
+
+Boolean is integer 0 and 1.
 
 [source](https://www.learncpp.com/cpp-tutorial/boolean-values/)
 
@@ -56,6 +56,52 @@ g++ -Wall -pedantic main.cpp -g -o ./a.out
 There is std::byte since C++17
 
 [source](https://en.wikipedia.org/wiki/C++17)
+
+### String
+
+```cpp
+#include<string>
+```
+
+```cpp
+// String to int
+std::stoi(string)
+```
+
+[strings are objects, not array of characters](https://stackoverflow.com/questions/3454900/whats-the-difference-between-c-strings-and-c-strings)
+[read](https://www.joelonsoftware.com/2003/10/08/the-absolute-minimum-every-software-developer-absolutely-positively-must-know-about-unicode-and-character-sets-no-excuses/)
+[link](https://www.cprogramming.com/tutorial/unicode.html)
+[unicode string](https://www.oreilly.com/library/view/c-cookbook/0596007612/ch13s02.html)
+[unicode characters](https://en.wikipedia.org/wiki/List_of_Unicode_characters)
+
+#### w_char
+
+```cpp
+wchar_t wide_c = L"a";
+```
+
+#### Unicode
+
+[how-to-print-unicode-character-in-c](https://stackoverflow.com/questions/12015571/how-to-print-unicode-character-in-c)
+
+```cpp
+#include <iostream>
+#include <io.h>
+#include <fcntl.h>
+
+int main() {
+    _setmode(_fileno(stdout), _O_U16TEXT);
+    std::wcout << L"Hello, \u0444!\n";
+}
+```
+
+### Enum
+
+```cpp
+enum APPROACH { BF=1, BAB=2, DP=3, GH=4, REDUX=5, FPTAS=6 };
+```
+
+[enum cppreference](https://en.cppreference.com/w/cpp/language/enum)
 
 ## Operator precedence
 
@@ -77,33 +123,6 @@ cout << "Hello " << n << "th world! There is user number " << user_num << "." <<
 ```
 
 [cin in while loop](https://stackoverflow.com/questions/19483126/whats-the-difference-between-whilecin-and-whilecin-num)
-
-## String
-
-[strings are objects, not array of characters](https://stackoverflow.com/questions/3454900/whats-the-difference-between-c-strings-and-c-strings)
-[read](https://www.joelonsoftware.com/2003/10/08/the-absolute-minimum-every-software-developer-absolutely-positively-must-know-about-unicode-and-character-sets-no-excuses/)
-[link](https://www.cprogramming.com/tutorial/unicode.html)
-[unicode string](https://www.oreilly.com/library/view/c-cookbook/0596007612/ch13s02.html)
-[unicode characters](https://en.wikipedia.org/wiki/List_of_Unicode_characters)
-
-### w_char
-
-```cpp
-wchar_t wide_c = L"a";
-```
-
-### https://stackoverflow.com/questions/12015571/how-to-print-unicode-character-in-c
-
-```cpp
-#include <iostream>
-#include <io.h>
-#include <fcntl.h>
-
-int main() {
-    _setmode(_fileno(stdout), _O_U16TEXT);
-    std::wcout << L"Hello, \u0444!\n";
-}
-```
 
 ## Condtitions
 
@@ -135,6 +154,12 @@ for (i = n; i > 0; --i) {
 }
 ```
 [source](https://stackoverflow.com/questions/4706199/post-increment-and-pre-increment-within-a-for-loop-produce-same-output)
+
+## Structres
+
+```cpp
+struct ITEM { int *w; int *v; };
+```
 
 ## Assertions
 
