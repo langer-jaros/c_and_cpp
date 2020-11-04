@@ -9,26 +9,65 @@ It has been standardized by the ANSI since 1989 (ANSI C) and by the ISO since 19
 
 ## Content
 
+- [Good sources](#good-sources)
+- [Content](#content)
 - [Install](#install)
 - [Basics](#basics)
+  - [code hello_world.c](#code-hello_worldc)
 - [Compile](#compile)
 - [Run the executable file](#run-the-executable-file)
+  - [Transfer standard input/output to/from file](#transfer-standard-inputoutput-tofrom-file)
 - [Comments](#comments)
 - [Main function](#main-function)
-- [Printing (standard input output library)](#printing-(standard-input-output-library))
+- [Printing (standard input output library)](#printing-standard-input-output-library)
 - [Variables](#variables)
+  - [Integers](#integers)
+  - [Floating point numbers](#floating-point-numbers)
+  - [Formated print](#formated-print)
 - [Casting](#casting)
-- [Aritmetics, operators precedence, asociativity](#aritmetics,-operators-precedence,-asociativity)
+- [Aritmetics, operators precedence, asociativity](#aritmetics-operators-precedence-asociativity)
+  - [Precedence 2](#precedence-2)
+  - [Inrement pre-increment, decrement](#inrement-pre-increment-decrement)
 - [Arrays](#arrays)
+  - [String](#string)
+  - [Address of a variable](#address-of-a-variable)
+  - [Pointers](#pointers)
 - [Conditions](#conditions)
+  - [If](#if)
+  - [Ternary condition](#ternary-condition)
+  - [Switch](#switch)
 - [Boolean](#boolean)
-- [Short-Circuiting](#short-Circuiting)
+- [Short-Circuiting](#short-circuiting)
 - [Loops](#loops)
+  - [Change the loop variable](#change-the-loop-variable)
+  - [Continue](#continue)
 - [Functions](#functions)
+  - [Passing values or adressses](#passing-values-or-adressses)
+- [Struct](#struct)
+  - [Typedef struct](#typedef-struct)
+- [Constants](#constants)
+  - [Macros](#macros)
 - [Input](#input)
+  - [Input arguments](#input-arguments)
 - [Libraries](#libraries)
+  - [Standard input outpu (stdio)](#standard-input-outpu-stdio)
+  - [Standard input](#standard-input)
+- [Time](#time)
+- [Standard library](#standard-library)
+  - [String features](#string-features)
+  - [Constants](#constants-1)
+  - [Sorting](#sorting)
+  - [Randomness](#randomness)
+  - [Dynamic memory](#dynamic-memory)
+  - [Check for memory leaks](#check-for-memory-leaks)
+- [Assertions](#assertions)
+- [Limits](#limits)
+- [Math](#math)
+- [Int types](#int-types)
+  - [Errno](#errno)
 - [Test driven development](#test-driven-development)
 - [Debug a segfault](#debug-a-segfault)
+- [Object Orientated Programming](#object-orientated-programming)
 - [TODO](#todo)
 
 ## Install
@@ -762,6 +801,12 @@ gdb ./a.out
 ```gdb
 run
 ```
+
+## Object Orientated Programming
+
+C does not have builtin support for OOP, however to some extent the paradigm is possible and may be beneficial.
+
+[OOP in C (codementor)](https://www.codementor.io/@michaelsafyan/object-oriented-programming-in-c-du1081gw2)
 
 ## TODO
 

@@ -1,10 +1,12 @@
 #include <iostream>
 #include <vector>
- 
+
+using namespace std;
+
 int main()
 {
     // Create a vector containing integers
-    std::vector<int> v = {7, 5, 16, 8};
+    vector<int> v = {7, 5, 16, 8};
  
     // Add two more integers to vector
     v.push_back(25);
@@ -12,13 +14,19 @@ int main()
  
     // Iterate and print values of vector
     for(int n : v) {
-        std::cout << n << '\n';
+        cout << n << '\n';
     }
     
     v.clear();
 
     for(int n : v) {
-        std::cout << "never" << '\n';
+        cout << "never" << '\n';
+    }
+
+    vector<bool> boo (5, true);
+
+    for(bool b : boo) {
+        cout << "bool: " << b << '\n';
     }
 
 }

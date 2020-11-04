@@ -23,9 +23,12 @@
 - [Limits](#limits)
   - [make](#make)
 - [Debugger](#debugger)
-  - [TODO: GDB](#todo-gdb)
+  - [GDB](#gdb)
 - [Header file](#header-file)
+- [cmath](#cmath)
+- [Algorithm](#algorithm)
 - [Chrono](#chrono)
+- [Bitset](#bitset)
 
 ## Install C++
 
@@ -37,7 +40,18 @@ sudo apt-get install build-essential
 
 ```sh
 g++ -Wall -pedantic main.cpp -g -o ./a.out
+# g++ -Wall -Wextra -Werror -c main.cpp -o main.o
 ```
+
+| option    | description                           |
+| ---       | ---                                   |
+| -o <file> | Place the output into <file>.         |
+| -Wall     |                                       |
+| -pedantic |                                       |
+| -g        |                                       |
+| -Wextra   |                                       |
+| -Werror   |                                       |
+| -c        | Compile and assemble, but do not link |
 
 ## Comments, documentation
 
@@ -152,8 +166,15 @@ for (i = n; i > 0; --i) {
     // if conditions fits, code is executed and then comes the third section
     // pre increment and post increment does not matter then
 }
+// Range-based for loop
+vector<int> v = {7, 5, 16, 8};
+for(int n : v) {
+    cout << n << '\n';
+}
 ```
-[source](https://stackoverflow.com/questions/4706199/post-increment-and-pre-increment-within-a-for-loop-produce-same-output)
+
+- [source](https://stackoverflow.com/questions/4706199/post-increment-and-pre-increment-within-a-for-loop-produce-same-output)
+- [range based for loop](https://en.cppreference.com/w/cpp/language/range-for)
 
 ## Structres
 
@@ -215,20 +236,34 @@ delete a;
 ```cpp
 #include <iostream>
 #include <vector>
- 
+
+using namespace std;
+```
+
+```cpp
 int main()
 {
-    // Create a vector containing integers
-    std::vector<int> v = {7, 5, 16, 8};
- 
+    
+    vector<int> v;
+    vector<int> v = {7, 5, 16, 8};  // define vector with values
+    vector<int> v(10);              // vector of 10 values
+    vector<int> v(10, 123);         // vector of 10 values 123
+
+    // Vector of vectors 10x10 with values 1
+    vector<vector<int>> v(10, vector<int>(10, 1));
+
     // Add two more integers to vector
     v.push_back(25);
     v.push_back(13);
- 
+
+    v.front();
+    v.back();
+
     // Iterate and print values of vector
     for(int n : v) {
         std::cout << n << '\n';
     }
+    v.clear();
 }
 ```
 
@@ -262,9 +297,28 @@ target [target ...]: [component ...] [<TAB> command 1] . . .
 valgrind --leak-check=full ./a.out
 ```
 
-### TODO: GDB
+### GDB
 
-https://stackoverflow.com/questions/18271363/line-by-line-c-c-code-debugging-in-linux-ubuntu
+```bash
+apt-get install gdb
+```
+
+```bash
+# Compile your program ,this will generate a.out file with required debugging information
+g++ -g file.c
+# Start with gdb
+gdb a.out
+```
+
+| action          | description |
+| ---             | ---         |
+| b main          | to set break point at main |
+| run             | run now , and it will stop at break point main |
+| s               | option s is to step single line and even step into functions |
+| n               | option n is to execute next line and step over functions |
+| p variable_name | to print the value of variable at that particular instance very helpful |
+
+[which debbuger (stackoverwlow)](https://stackoverflow.com/questions/18271363/line-by-line-c-c-code-debugging-in-linux-ubuntu)
 
 ## Header file
 
@@ -287,11 +341,43 @@ void test_passing_array(int *data, int len);
 [source](https://solarianprogrammer.com/2019/07/18/python-using-c-cpp-libraries-ctypes/)
 [header files](https://www.learncpp.com/cpp-tutorial/header-files/)
 
+## cmath
+
+
+```cpp
+#include <cmath>
+```
+
+```cpp
+pow(numer, power)
+```
+
+[cppreference](https://en.cppreference.com/w/cpp/numeric/math/pow)
+
+## Algorithm
+
+```cpp
+#include <algorithm>
+
+using namespace std;
+```
+
+```cpp
+// max
+cout << max(235, 0x150) << endl;
+
+// max_element
+int v[] = { 4, 7, 4, 6, 9, 3, 5 }; 
+int *int_ptr;  
+int_ptr = max_element(v, v + (sizeof(v) / *v) - 1);
+cout << *int_ptr << endl;
+```
 
 ## Chrono
 
 ```cpp
 #include <chrono>
+using namespace std;
 ```
 
 ```cpp
@@ -302,3 +388,18 @@ std::chrono::duration<double> elapsed_seconds = end-start;
 std::cout << "elapsed time: " << elapsed_seconds.count() << "s\n";
 ```
 [source](https://en.cppreference.com/w/cpp/chrono)
+
+## Bitset
+
+```cpp
+#include <bitset>
+using namespace std;
+```
+
+```cpp
+bitset<16> fofo (0xf0f0);
+bitset<16> ten (std::string("0101111001"));
+```
+
+[bitset (cplusplus)](http://www.cplusplus.com/reference/bitset/bitset/bitset/)
+[cpp reference](https://en.cppreference.com/w/cpp/utility/bitset)
