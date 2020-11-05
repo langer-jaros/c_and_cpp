@@ -26,5 +26,14 @@ int main()
 
     cout << "First item: weight = " << prob.items[0].w << ", value =" << prob.items[0].v << endl;
 
+    vector<ITEM> v;
+
+    v.push_back({123, 321});
+    v.push_back({333, 111});
+    
+    v[0] = ITEM({12, 31});
+
+    cout << "v capacity: " << v.capacity() << ", v size: " << v.size() << ", v[0].weight: " << v[0].w << endl;
+
     return 0;
 }

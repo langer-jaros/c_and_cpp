@@ -1,15 +1,15 @@
 # cpp
 
-## Content <!-- omit in toc -->
+## Contents <!-- omit in toc -->
 
 - [Install C++](#install-c)
 - [Compile a cpp code](#compile-a-cpp-code)
 - [Comments, documentation](#comments-documentation)
 - [Variables](#variables)
   - [Boolean](#boolean)
-  - [Byte](#byte)
   - [String](#string)
   - [Enum](#enum)
+  - [Byte](#byte)
 - [Operator precedence](#operator-precedence)
 - [Stdin, stdout](#stdin-stdout)
 - [Condtitions](#condtitions)
@@ -21,7 +21,7 @@
 - [STL - standard template library](#stl---standard-template-library)
   - [Vector](#vector)
 - [Limits](#limits)
-  - [make](#make)
+- [make](#make)
 - [Debugger](#debugger)
   - [GDB](#gdb)
 - [Header file](#header-file)
@@ -63,13 +63,11 @@ g++ -Wall -pedantic main.cpp -g -o ./a.out
 
 Boolean is integer 0 and 1.
 
+```cpp
+bool var = true; // 1
+```
+
 [source](https://www.learncpp.com/cpp-tutorial/boolean-values/)
-
-### Byte
-
-There is std::byte since C++17
-
-[source](https://en.wikipedia.org/wiki/C++17)
 
 ### String
 
@@ -116,6 +114,12 @@ enum APPROACH { BF=1, BAB=2, DP=3, GH=4, REDUX=5, FPTAS=6 };
 ```
 
 [enum cppreference](https://en.cppreference.com/w/cpp/language/enum)
+
+### Byte
+
+There is std::byte since C++17
+
+[source](https://en.wikipedia.org/wiki/C++17)
 
 ## Operator precedence
 
@@ -241,30 +245,25 @@ using namespace std;
 ```
 
 ```cpp
-int main()
-{
-    
-    vector<int> v;
-    vector<int> v = {7, 5, 16, 8};  // define vector with values
-    vector<int> v(10);              // vector of 10 values
-    vector<int> v(10, 123);         // vector of 10 values 123
+// Initialization
+vector<int> v;
+vector<int> v = {7, 5, 16, 8};  // define vector with values
+vector<int> v(10);              // vector of 10 values
+vector<int> v(10, 123);         // vector of 10 values 123
+// Vector of vectors 10x10 with values 1
+vector<vector<int>> v(10, vector<int>(10, 1));
 
-    // Vector of vectors 10x10 with values 1
-    vector<vector<int>> v(10, vector<int>(10, 1));
+// Access items
+v.front();  // get first item
+v.back();   // get last item
 
-    // Add two more integers to vector
-    v.push_back(25);
-    v.push_back(13);
+// Modify values
+v.push_back(25); // Add two more integers to vector
+v.clear();       // delete all items
 
-    v.front();
-    v.back();
-
-    // Iterate and print values of vector
-    for(int n : v) {
-        std::cout << n << '\n';
-    }
-    v.clear();
-}
+// Cappacity
+v.size()        // number of elemets
+v.capacity()    // number of elements for that the storage is allocated
 ```
 
 https://en.cppreference.com/w/cpp/container/vector
@@ -281,7 +280,7 @@ long l = LONG_MAX;
 
 [limits](http://www.cplusplus.com/reference/climits/)
 
-### make
+## make
 
 [make](https://linux.101hacks.com/unix/make/)
 
@@ -310,15 +309,21 @@ g++ -g file.c
 gdb a.out
 ```
 
-| action          | description |
-| ---             | ---         |
-| b main          | to set break point at main |
-| run             | run now , and it will stop at break point main |
-| s               | option s is to step single line and even step into functions |
-| n               | option n is to execute next line and step over functions |
-| p variable_name | to print the value of variable at that particular instance very helpful |
+| action              | description |
+| ---                 | ---         |
+| b function          | Set a breakpoint at entry to function function. |
+| b +offset           | Set a breakpoint some number of lines forward or back from the position at which execution stopped in the currently selected stack frame. |
+| b linenum           | Set a breakpoint at line linenum in the current source file. |
+| b filename:function | Set a breakpoint at entry to function function found in file filename. |
+| run                 | Start your program, it will stop at break point |
+| run < path/file     | Arguments and stdin works as usual |
+| c                   | Continue running your program (after stopping, e.g. at a breakpoint). |
+| s                   | option s is to step single line and even step into functions |
+| n                   | option n is to execute next line and step over functions |
+| p variable_name     | to print the value of variable at that particular instance very helpful |
 
-[which debbuger (stackoverwlow)](https://stackoverflow.com/questions/18271363/line-by-line-c-c-code-debugging-in-linux-ubuntu)
+- [which debbuger (stackoverwlow)](https://stackoverflow.com/questions/18271363/line-by-line-c-c-code-debugging-in-linux-ubuntu)
+- [debugging with gdb](https://ftp.gnu.org/old-gnu/Manuals/gdb/html_chapter/gdb_toc.html)
 
 ## Header file
 
@@ -372,6 +377,8 @@ int *int_ptr;
 int_ptr = max_element(v, v + (sizeof(v) / *v) - 1);
 cout << *int_ptr << endl;
 ```
+
+- [max_element](https://en.cppreference.com/w/cpp/algorithm/max_element)
 
 ## Chrono
 
