@@ -19,4 +19,9 @@ int main()
         cout << elem;
         (&elem != &vect.back())? cout << " ": cout << endl;
     }
+
+    for (int i = 0, j = 3; i < j; i+=2) {
+        j++;
+        cout << "i: " << i << ", j: " << j << endl;
+    }
 }

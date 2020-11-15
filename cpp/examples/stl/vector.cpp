@@ -16,7 +16,7 @@ int main()
     for(int n : v) {
         cout << n << '\n';
     }
-    
+
     v.clear();
 
     for(int n : v) {
@@ -29,4 +29,10 @@ int main()
         cout << "bool: " << b << '\n';
     }
 
+    cout << "---------------- int to binary test -----------------" << endl;
+    int a = 0b10;
+    vector<bool> test = (vector<bool>)a;
+    for(bool t : test) {
+        cout << "bool: " << t << '\n';
+    }
 }

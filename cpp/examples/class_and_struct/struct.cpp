@@ -1,5 +1,6 @@
-#include<iostream>
+#include <iostream>
 #include <vector>
+#include <ranges>
 
 using namespace std;
 
@@ -26,14 +27,18 @@ int main()
 
     cout << "First item: weight = " << prob.items[0].w << ", value =" << prob.items[0].v << endl;
 
-    vector<ITEM> v;
+    PROBLEM new_prob = prob;
 
-    v.push_back({123, 321});
-    v.push_back({333, 111});
-    
-    v[0] = ITEM({12, 31});
+    new_prob.items.push_back({123, 321});
+    new_prob.items.push_back({333, 111});
 
-    cout << "v capacity: " << v.capacity() << ", v size: " << v.size() << ", v[0].weight: " << v[0].w << endl;
+    new_prob.items[0] = ITEM({12, 31});
+
+    cout << "OLD: items capacity: " << prob.items.capacity() << ", v size: ";
+    cout << prob.items.size() << ", v[0].weight: " << prob.items[0].w << endl;
+
+    cout << "NEW: items capacity: " << new_prob.items.capacity() << ", v size: ";
+    cout << new_prob.items.size() << ", v[0].weight: " << new_prob.items[0].w << endl;
 
     return 0;
 }
